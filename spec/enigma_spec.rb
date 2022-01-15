@@ -31,4 +31,9 @@ RSpec.describe Enigma do
     enigma = Enigma.new
     expect(enigma.shifts([2, 27, 71, 15], [1, 0, 2, 5])).to eq([3, 27, 73, 20])
   end
+
+  it 'takes message encrypts the message' do
+    enigma = Enigma.new
+    expect(enigma.encrypt_message("hello world", [3, 27, 73, 20])).to eq("keder ohulw")
+  end
 end

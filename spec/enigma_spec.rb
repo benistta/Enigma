@@ -16,4 +16,9 @@ RSpec.describe Enigma do
       date: "040895"
     })
   end
+
+  it 'it can get keys from key' do
+  enigma = Enigma.new
+  expect(enigma.key_to_keys("02715")).to eq([2, 27, 71, 15])
+  end
 end

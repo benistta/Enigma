@@ -28,4 +28,13 @@ class Enigma
       element.to_i
     end
   end
+
+  def shifts(key, offset)
+    shift_array = []
+    shift_array << key[0] + offset[0]
+    shift_array << key[1] + offset[1]
+    shift_array << key[2] + offset[2]
+    shift_array << key[3] + offset[3]
+    shift_array
+  end
 end

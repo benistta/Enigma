@@ -24,7 +24,7 @@ RSpec.describe Enigma do
 
   it 'generates today date' do
     enigma = Enigma.new
-    expect(enigma.today_date).to eq("150122")
+    expect(enigma.today_date).to eq("160122")
   end
 
   it 'it can get keys from key' do
@@ -39,16 +39,17 @@ RSpec.describe Enigma do
 
   it 'getting shifts' do
     enigma = Enigma.new
-    expect(enigma.shifts([2, 27, 71, 15], [1, 0, 2, 5])).to eq([3, 27, 73, 20])
+    expect(enigma.shifts("02715", [1, 0, 2, 5])).to eq([3, 27, 73, 20])
   end
 
-  it 'takes message encrypts the message' do
+  it 'seperates shifts' do
     enigma = Enigma.new
-    expect(enigma.encrypt_message("hello world", [3, 27, 73, 20])).to eq("keder ohulw")
-  end
-
-  it 'takes message decrypts the message' do
-    enigma = Enigma.new
-    expect(enigma.decrypt_message("keder ohulw", [3, 27, 73, 20])).to eq("hello world")
+    enigma.shifts("02715", [1, 0, 2, 5])
+    expect(enigma.seperated_shifts).to eq({
+      "shift_a" => 3,
+      "shift_b" => 27,
+      "shift_c" => 73,
+      "shift_d" => 20
+    })
   end
 end

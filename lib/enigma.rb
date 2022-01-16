@@ -64,4 +64,31 @@ class Enigma
        "shift_d" => @shift_array[3]
      }
    end
+
+   def encrypt_message(message, key = generator_key, date = today_date)
+   message_chared = message.downcase.chars
+   encrypted_array = []
+
+   shifts(key, date_to_offset(date))
+   message_chared.each_with_index do |letter, index|
+     letter.downcase!
+     if ALPHA.include?(letter) == false
+       encrypted_array << letter
+     elsif index % 4 == 0
+       first_encrypted_letter = ALPHA.rotate(seperated_shifts.values[0])[ALPHA.index(letter)]
+       encrypted_array << first_encrypted_letter
+     elsif index % 4 == 1
+       second_encrypted_letter = ALPHA.rotate(seperated_shifts.values[1])[ALPHA.index(letter)]
+       encrypted_array << second_encrypted_letter
+     elsif index % 4 == 2
+       third_encrypted_letter = ALPHA.rotate(seperated_shifts.values[2])[ALPHA.index(letter)]
+       encrypted_array << third_encrypted_letter
+     elsif index % 4 == 3
+       fourth_encrypted_letter = ALPHA.rotate(seperated_shifts.values[3])[ALPHA.index(letter)]
+       encrypted_array << fourth_encrypted_letter
+
+       end
+     end
+      @encrypted_message = encrypted_array.join
+   end
 end

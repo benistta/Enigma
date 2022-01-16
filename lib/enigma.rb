@@ -93,9 +93,9 @@ class Enigma
       elsif index % 4 == 3
         fourth_encrypted_letter = ALPHA.rotate(key[3])[ALPHA.index(letter)]
         encrypted_array << fourth_encrypted_letter
-
         end
+      end
+      encrypted_array.join
     end
-    encrypted_array.join
-  end
+
   end

@@ -23,13 +23,11 @@ class Enigma
   #lets find the keys and the offsets
   def key_to_keys(key)
     keys_array = []
-    # key[0,1]
     keys_array << key[0..1].to_i
     keys_array << key[1..2].to_i
     keys_array << key[2..3].to_i
     keys_array << key[3..4].to_i
     keys_array
-
   end
 
   def date_to_offset(date)
@@ -39,16 +37,65 @@ class Enigma
     seperated_last_four.map do |element|
       element.to_i
     end
+
   end
 
   def shifts(key, offset)
     shift_array = []
-    shift_array << key[0] + offset[0]
-    shift_array << key[1] + offset[1]
-    shift_array << key[2] + offset[2]
-    shift_array << key[3] + offset[3]
+    shift_array << key[0].to_i + offset[0]
+    shift_array << key[1].to_i + offset[1]
+    shift_array << key[2].to_i + offset[2]
+    shift_array << key[3].to_i + offset[3]
     shift_array
-
   end
 
-end
+  #   # def encrypt_message(message, shift)
+  #
+  #   array = []
+  #   chared_message = message.chars
+  #   array << {chared_message[0] => shift[0]}
+  #   array << {chared_message[1] => shift[1]}
+  #   array << {chared_message[2] => shift[2]}
+  #   array << {chared_message[3] => shift[3]}
+  #   array << {chared_message[4] => shift[0]}
+  #   array << {chared_message[5] => shift[1]}
+  #   array << {chared_message[6] => shift[2]}
+  #   array << {chared_message[7] => shift[3]}
+  #   array << {chared_message[8] => shift[0]}
+  #   array << {chared_message[9] => shift[1]}
+  #   array << {chared_message[10] => shift[2]}
+  #   array.flat_map do |hash|
+  #     hash.flat_map do |key, value|
+  #       ALPHA.include?(key) == true
+  #       x = ALPHA.rotate(7)
+  #       y = x.rotate(value)
+  #       require "pry"; binding.pry
+  #       return y[0]
+  #     end
+  #   end
+  # end
+
+  def encrypt_message(message, key = generator_key, date = today_date, encrypt = true)
+    message_chared = message.downcase.chars
+    encrypted_array = []
+    message_chared.each_with_index do |letter, index|
+      if ALPHA.include?(letter) == false
+        encrypted_array << letter
+      elsif index % 4 == 0
+        first_encrypted_letter = ALPHA.rotate(key[0])[ALPHA.index(letter)]
+        encrypted_array << first_encrypted_letter
+      elsif index % 4 == 1
+        second_encrypted_letter = ALPHA.rotate(key[1])[ALPHA.index(letter)]
+        encrypted_array << second_encrypted_letter
+      elsif index % 4 == 2
+        third_encrypted_letter = ALPHA.rotate(key[2])[ALPHA.index(letter)]
+        encrypted_array << third_encrypted_letter
+      elsif index % 4 == 3
+        fourth_encrypted_letter = ALPHA.rotate(key[3])[ALPHA.index(letter)]
+        encrypted_array << fourth_encrypted_letter
+
+        end
+    end
+    encrypted_array.join
+  end
+  end

@@ -37,7 +37,7 @@ RSpec.describe Enigma do
     expect(enigma.encrypt_message("hello world", [3, 27, 73, 20])).to eq("keder ohulw")
   end
 
-  xit 'generates random number' do
+  it 'generates random number' do
     enigma = Enigma.new
     expect(enigma.generator_key).to eq("99999")
   end

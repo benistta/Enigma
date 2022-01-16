@@ -52,4 +52,10 @@ RSpec.describe Enigma do
       "shift_d" => 20
     })
   end
+
+  it 'takes message encrypts the message' do
+    enigma = Enigma.new
+    expect(enigma.encrypt_message("hello world", "02715", "040895")).to eq("keder ohulw")
+  end
+
 end

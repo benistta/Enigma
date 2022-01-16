@@ -49,33 +49,7 @@ class Enigma
     shift_array
   end
 
-  #   # def encrypt_message(message, shift)
-  #
-  #   array = []
-  #   chared_message = message.chars
-  #   array << {chared_message[0] => shift[0]}
-  #   array << {chared_message[1] => shift[1]}
-  #   array << {chared_message[2] => shift[2]}
-  #   array << {chared_message[3] => shift[3]}
-  #   array << {chared_message[4] => shift[0]}
-  #   array << {chared_message[5] => shift[1]}
-  #   array << {chared_message[6] => shift[2]}
-  #   array << {chared_message[7] => shift[3]}
-  #   array << {chared_message[8] => shift[0]}
-  #   array << {chared_message[9] => shift[1]}
-  #   array << {chared_message[10] => shift[2]}
-  #   array.flat_map do |hash|
-  #     hash.flat_map do |key, value|
-  #       ALPHA.include?(key) == true
-  #       x = ALPHA.rotate(7)
-  #       y = x.rotate(value)
-  #       require "pry"; binding.pry
-  #       return y[0]
-  #     end
-  #   end
-  # end
-
-  def encrypt_message(message, key = generator_key, date = today_date, encrypt = true)
+  def encrypt_message(message, key = generator_key, date = today_date)
     message_chared = message.downcase.chars
     encrypted_array = []
     message_chared.each_with_index do |letter, index|
@@ -98,4 +72,27 @@ class Enigma
       encrypted_array.join
     end
 
+    def decrypt_message(message, key, date = today_date)
+      message_chared = message.downcase.chars
+      decrypted_array = []
+      message_chared.each_with_index do |letter, index|
+        if ALPHA.include?(letter) == false
+          decrypted_array << letter
+        elsif index % 4 == 0
+          first_decrypted_letter = ALPHA.rotate(key[0] * -1)[ALPHA.index(letter)]
+          decrypted_array << first_decrypted_letter
+        elsif index % 4 == 1
+          second_decrypted_letter = ALPHA.rotate(key[1] * -1)[ALPHA.index(letter)]
+          decrypted_array << second_decrypted_letter
+        elsif index % 4 == 2
+          third_decrypted_letter = ALPHA.rotate(key[2] * -1)[ALPHA.index(letter)]
+          decrypted_array << third_decrypted_letter
+        elsif index % 4 == 3
+          fourth_decrypted_letter = ALPHA.rotate(key[3] * -1)[ALPHA.index(letter)]
+          decrypted_array << fourth_decrypted_letter
+          require "pry"; binding.pry
+          end
+        end
+        decrypted_array.join
+      end
   end

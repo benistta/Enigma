@@ -58,4 +58,12 @@ RSpec.describe Enigma do
     expect(enigma.encrypt_message("hello world", "02715", "040895")).to eq("keder ohulw")
   end
 
+  it 'takes message encrypts the message and return a hash with date and key' do
+    enigma = Enigma.new
+    expect(enigma.encrypt("hello world", "02715", "040895")).to eq({
+        encryption: "keder ohulw",
+        key: "02715",
+        date: "040895"
+      })
+  end
 end

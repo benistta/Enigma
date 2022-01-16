@@ -32,8 +32,18 @@ RSpec.describe Enigma do
     expect(enigma.shifts([2, 27, 71, 15], [1, 0, 2, 5])).to eq([3, 27, 73, 20])
   end
 
-  it 'takes message encrypts the message' do
+  xit 'takes message encrypts the message' do
     enigma = Enigma.new
     expect(enigma.encrypt_message("hello world", [3, 27, 73, 20])).to eq("keder ohulw")
+  end
+
+  xit 'generates random number' do
+    enigma = Enigma.new
+    expect(enigma.generator_key).to eq("99999")
+  end
+
+  it 'generates today date' do
+    enigma = Enigma.new
+    expect(enigma.today_date).to eq("150122")
   end
 end

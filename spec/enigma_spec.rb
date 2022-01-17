@@ -1,7 +1,10 @@
+require_relative 'helper'
 require 'date'
 require './lib/enigma'
+require "./lib/helper_enigma"
 
 RSpec.describe Enigma do
+
   it 'exists' do
     enigma = Enigma.new
     expect(enigma).to be_instance_of(Enigma)

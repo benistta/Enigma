@@ -1,38 +1,10 @@
-pry(main)> require 'date'
-#=> true
+Self Assessment:
 
-pry(main)> require './lib/enigma'
-#=> true
 
-pry(main)> enigma = Enigma.new
-#=> #<Enigma:0x00007ff90f24cb78...>
+Functionality: Meets Expectations. Encrypt and decrypt methods successfully implemented in the Enigma class. Encrypt/decrypt command line interfaces successfully implemented
 
-# encrypt a message with a key and date
-pry(main)> enigma.encrypt("hello world", "02715", "040895")
-#=>
-#   {
-#     encryption: "keder ohulw",
-#     key: "02715",
-#     date: "040895"
-#   }
+Object Oriented Programming: Above Expectations. Implemented a module that makes sense to the overall organization of the project.
 
-# decrypt a message with a key and date
-pry(main) > enigma.decrypt("keder ohulw", "02715", "040895")
-#=>
-#   {
-#     decryption: "hello world",
-#     key: "02715",
-#     date: "040895"
-#   }
+Ruby Conventions and Mechanics: Meets Expectations. Code properly indented, spaced and lines are not excessively long. Enumerables chosen are most efficient. Class, method, variable, and file names follow convention. At least one hash is implemented.
 
-# encrypt a message with a key (uses today's date)
-pry(main)> encrypted = enigma.encrypt("hello world", "02715")
-#=> # encryption hash here
-
-#decrypt a message with a key (uses today's date)
-pry(main) > enigma.decrypt(encrypted[:encryption], "02715")
-#=> # decryption hash here
-
-# encrypt a message (generates random key and uses today's date)
-pry(main)> enigma.encrypt("hello world")
-#=> # encryption hash here
+Test Driven Development: Meets Expectations. Every method is tested verifying expected behavior. Obvious edge cases are addressed. Tests are written before the implementation of code.

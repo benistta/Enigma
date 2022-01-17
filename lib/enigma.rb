@@ -127,7 +127,6 @@ class Enigma
   end
 
   def decrypt(message, key, date = today_date)
-
    decrypt_message(message, key, date)
    decrypted_hash = {
      decryption: @decrypted_message,

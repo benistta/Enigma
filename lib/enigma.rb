@@ -91,4 +91,31 @@ class Enigma
      end
       @encrypted_message = encrypted_array.join
    end
+
+  def decrypt_message(message, key, date = today_date)
+  message_chared = message.downcase.chars
+  decrypted_array = []
+
+  shifts(key, date_to_offset(date))
+  message_chared.each_with_index do |letter, index|
+    if ALPHA.include?(letter) == false
+      decrypted_array << letter
+    elsif index % 4 == 0
+      first_decrypted_letter = ALPHA.rotate(seperated_shifts.values[0] * -1)[ALPHA.index(letter)]
+      decrypted_array << first_decrypted_letter
+    elsif index % 4 == 1
+      second_decrypted_letter = ALPHA.rotate(seperated_shifts.values[1] * -1)[ALPHA.index(letter)]
+      decrypted_array << second_decrypted_letter
+    elsif index % 4 == 2
+      third_decrypted_letter = ALPHA.rotate(seperated_shifts.values[2] * -1)[ALPHA.index(letter)]
+      decrypted_array << third_decrypted_letter
+    elsif index % 4 == 3
+      fourth_decrypted_letter = ALPHA.rotate(seperated_shifts.values[3] * -1)[ALPHA.index(letter)]
+      decrypted_array << fourth_decrypted_letter
+      # require "pry"; binding.pry
+      end
+    end
+    @decrypted_message = decrypted_array.join
+  end
+
 end

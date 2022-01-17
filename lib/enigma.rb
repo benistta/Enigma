@@ -46,6 +46,7 @@ class Enigma
   end
 
   def decrypt_message(message, key, date = today_date)
+  
   message_chared = message.downcase.chars
   decrypted_array = []
 

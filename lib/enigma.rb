@@ -92,6 +92,16 @@ class Enigma
       @encrypted_message = encrypted_array.join
    end
 
+   def encrypt(message, key = generator_key, date = today_date)
+    @random_key = key
+    encrypt_message(message, key, date)
+     @encrypted = {
+      encryption: @encrypted_message,
+      key: key,
+      date: date
+    }
+  end
+
   def decrypt_message(message, key, date = today_date)
   message_chared = message.downcase.chars
   decrypted_array = []

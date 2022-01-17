@@ -27,7 +27,6 @@ class Enigma
     date = Date.today.strftime ("%d%m%y")
   end
 
-  #lets find the keys and the offsets
   def key_to_keys(key)
     keys_array = []
     keys_array << key[0..1].to_i
@@ -122,7 +121,6 @@ class Enigma
     elsif index % 4 == 3
       fourth_decrypted_letter = ALPHA.rotate(seperated_shifts.values[3] * -1)[ALPHA.index(letter)]
       decrypted_array << fourth_decrypted_letter
-      # require "pry"; binding.pry
       end
     end
     @decrypted_message = decrypted_array.join

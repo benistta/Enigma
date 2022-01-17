@@ -1,6 +1,5 @@
-require 'date' # use Date.today
+require 'date'
 require './lib/enigma'
-
 
 RSpec.describe Enigma do
   it 'exists' do

@@ -118,4 +118,13 @@ class Enigma
     @decrypted_message = decrypted_array.join
   end
 
+  def decrypt(message, key, date = today_date)
+
+   decrypt_message(message, key, date)
+   decrypted_hash = {
+     decryption: @decrypted_message,
+     key: key,
+     date: date
+   }
+ end
 end

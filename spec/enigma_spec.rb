@@ -1,4 +1,4 @@
-require_relative 'helper'
+require_relative 'spec_helper'
 require 'date'
 require './lib/enigma'
 require "./lib/helper_enigma"

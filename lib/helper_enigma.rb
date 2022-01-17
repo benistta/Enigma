@@ -10,14 +10,6 @@ module HelperEnigma
     @random_key = nil
   end
 
-  def encrypt(message, key, date)
-    hash = {}
-    hash[:encryption] = "keder ohulw"
-    hash[:date] = date
-    hash[:key] = key
-    hash
-  end
-
   def generator_key
     key = rand(99999).to_s.rjust(5, "0")
   end

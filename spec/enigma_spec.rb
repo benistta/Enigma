@@ -100,4 +100,13 @@ RSpec.describe Enigma do
       })
   end
 
+  it 'encrypt a message. Generates random key with today date' do
+    enigma = Enigma.new
+    expect(enigma.encrypt("hello world")).to eq({
+      encryption: enigma.encrypted_message,
+      key: enigma.random_key,
+      date: enigma.today_date
+      })
+  end
+
 end

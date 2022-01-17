@@ -1,7 +1,10 @@
+require_relative 'spec_helper'
 require 'date'
 require './lib/enigma'
+require "./lib/helper_enigma"
 
 RSpec.describe Enigma do
+
   it 'exists' do
     enigma = Enigma.new
     expect(enigma).to be_instance_of(Enigma)
@@ -23,7 +26,7 @@ RSpec.describe Enigma do
 
   it 'generates today date' do
     enigma = Enigma.new
-    expect(enigma.today_date).to eq("160122")
+    expect(enigma.today_date).to eq("170122")
   end
 
   it 'it can get keys from key' do
